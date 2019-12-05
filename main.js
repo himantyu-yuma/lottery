@@ -22,6 +22,11 @@ let showPresent = function () {
     }
     showBall();
     setTimeout(() => {
+        rotateBall();
+    }, 500);
+    setTimeout(() => {
+        openBall();
+        document.getElementById('present').innerHTML = presents[random].name;
         presents[random].number--;
         if (presents[random].number == 0) {
             // if (presents.length == 1) {
@@ -30,15 +35,8 @@ let showPresent = function () {
             presents.splice(random, 1);
         }
         localStorage.setItem('present', JSON.stringify(presents));
-    }, 1000);
-    setTimeout(() => {
-        rotateBall();
-    }, 500);
-    setTimeout(() => {
-        openBall();
-        document.getElementById('present').innerHTML = presents[random].name;
     }, 2000);
-    $('.fixed-bottom').removeClass('display-none')
+    $('.okey').removeClass('display-none')
 
 }
 
@@ -67,5 +65,16 @@ let hideBall = function () {
     $('#up').removeClass('up');
     $('#down').removeClass('down');
     document.getElementById('present').innerHTML = '';
-    $('.fixed-bottom').addClass('display-none')
+    $('.okey').addClass('display-none')
+}
+
+let reset = function(){
+    conf = confirm('本当にリセットしますか？')
+    if(conf){
+        presents = JSON.parse(localStorage.getItem('default'));
+        localStorage.setItem('present', JSON.stringify(presents));
+        alert('リセットされました．')
+    }else{
+        return;
+    }
 }

@@ -31,5 +31,6 @@ let getPresent = function(){
     }
     // url += 'json='+JSON.stringify(presents);
     localStorage.setItem('present', JSON.stringify(presents));
+    localStorage.setItem('default', JSON.stringify(presents));
     location.href = url;
 }
