@@ -16,8 +16,15 @@ body{
     font-size: 7rem;
     /* position: absolute; */
     /* left: 50vw; */
-    text-align: center;
-    margin-top: 10vh;
+    /* text-align: center; */
+    /* margin-top: 10vh; */
+
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+  
 }
 
 img{
@@ -35,7 +42,7 @@ img{
 }
   
 .fall {
-    transform: translateY(100vh);
+    transform: translateY(110vh);
 }
 
 .down {
@@ -48,4 +55,14 @@ img{
 
 .display-none{
     display: none;
+}
+
+.balls{
+    transition: all 600ms 0s ease;
+    /* background-color: black; */
+}
+
+.rotate{
+    transform: rotate(180deg);
+
 }

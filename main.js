@@ -2,8 +2,8 @@
 let data = localStorage.getItem('present')
 
 if (data == "") {
-    presents = []    
-}else{
+    presents = []
+} else {
     presents = JSON.parse(data);
 }
 
@@ -22,7 +22,6 @@ let showPresent = function () {
     }
     showBall();
     setTimeout(() => {
-        document.getElementById('present').innerHTML = presents[random].name;
         presents[random].number--;
         if (presents[random].number == 0) {
             // if (presents.length == 1) {
@@ -33,27 +32,37 @@ let showPresent = function () {
         localStorage.setItem('present', JSON.stringify(presents));
     }, 1000);
     setTimeout(() => {
+        rotateBall();
+    }, 500);
+    setTimeout(() => {
         openBall();
-    }, 1000);
+        document.getElementById('present').innerHTML = presents[random].name;
+    }, 2000);
     $('.fixed-bottom').removeClass('display-none')
 
 }
 
-let showBall = function(){
+let showBall = function () {
     $('.ball').addClass('fall');
+
 }
 
-let openBall = function(){
+let openBall = function () {
     $('#up').addClass('up');
     $('#down').addClass('down');
 }
 
-let hideBall = function(){
+let rotateBall = function(){
+    $('.balls').addClass('rotate');
+}
+
+let hideBall = function () {
     $('#start').prop('disabled', false);
-    $('.ball').addClass('display-none');
+    $('.balls').addClass('display-none');
     setTimeout(() => {
-        $('.ball').removeClass('display-none');
+        $('.balls').removeClass('display-none');
     }, 600);
+    $('.balls').removeClass('rotate');
     $('.ball').removeClass('fall');
     $('#up').removeClass('up');
     $('#down').removeClass('down');
