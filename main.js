@@ -3,6 +3,7 @@ let data = decodeURI(location.search).replace('?json=', '');
 let presents = JSON.parse(data);
 
 let showPresent = function () {
+    $('#start').prop('disabled', true);
     if (presents.length == 0) {
         alert('抽選は終了しました．')
         return;
@@ -40,6 +41,7 @@ let openBall = function(){
 }
 
 let hideBall = function(){
+    $('#start').prop('disabled', false);
     $('.ball').addClass('display-none');
     setTimeout(() => {
         $('.ball').removeClass('display-none');
