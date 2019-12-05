@@ -29,6 +29,7 @@ let getPresent = function(){
         // num = document.getElementById(`form${i}`).value;
         // url += `${encodeURI(name)}=${num}&`
     }
-    url += 'json='+JSON.stringify(presents);
+    // url += 'json='+JSON.stringify(presents);
+    localStorage.setItem('present', JSON.stringify(presents));
     location.href = url;
 }

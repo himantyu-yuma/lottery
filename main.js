@@ -1,6 +1,13 @@
-let data = decodeURI(location.search).replace('?json=', '');
+// let data = decodeURI(location.search).replace('?json=', '');
+let data = localStorage.getItem('present')
 
-let presents = JSON.parse(data);
+if (data == "") {
+    presents = []    
+}else{
+    presents = JSON.parse(data);
+}
+
+
 
 let showPresent = function () {
     $('#start').prop('disabled', true);
@@ -16,18 +23,19 @@ let showPresent = function () {
     showBall();
     setTimeout(() => {
         document.getElementById('present').innerHTML = presents[random].name;
+        presents[random].number--;
+        if (presents[random].number == 0) {
+            // if (presents.length == 1) {
+            //     presents = [];
+            // }
+            presents.splice(random, 1);
+        }
+        localStorage.setItem('present', JSON.stringify(presents));
     }, 1000);
     setTimeout(() => {
         openBall();
     }, 1000);
     $('.fixed-bottom').removeClass('display-none')
-    presents[random].number--;
-    if (presents[random].number == 0) {
-        // if (presents.length == 1) {
-        //     presents = [];
-        // }
-        presents.splice(random, 1);
-    }
 
 }
 
@@ -45,7 +53,7 @@ let hideBall = function(){
     $('.ball').addClass('display-none');
     setTimeout(() => {
         $('.ball').removeClass('display-none');
-    }, 300);
+    }, 600);
     $('.ball').removeClass('fall');
     $('#up').removeClass('up');
     $('#down').removeClass('down');
